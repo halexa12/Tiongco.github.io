@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaas</title>
+  <style type="text/css">
+    body {
+      background-color: #E8A0BF;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    .form-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .form-wrapper label {
+      display: inline-block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .form-wrapper input[type="number"] {
+      padding: 5px;
+      width: 100px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-button {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #45a049;
+    }
+
+    .output-box {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #FEA1A1; /* Light purple */
+    }
+
+    .output-box .result {
+      color: #fff;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <h2>Sum of Numbers in Range</h2>
+
+      <div class="form-wrapper">
+        <form id="sum-form">
+          <label for="startNumber">Starting Number:</label>
+          <input type="number" id="startNumber" required>
+
+          <label for="endNumber">Ending Number:</label>
+          <input type="number" id="endNumber" required>
+
+          <button type="submit" class="submit-button">Calculate Sum</button>
+        </form>
+      </div>
+
+      <div class="output-box">
+        <div class="result"></div>
+        <div class="error-message"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    document.getElementById('sum-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var startNumberInput = document.getElementById('startNumber');
+      var endNumberInput = document.getElementById('endNumber');
+
+      var startNumber = parseInt(startNumberInput.value);
+      var endNumber = parseInt(endNumberInput.value);
+
+      var resultContainer = document.querySelector('.result');
+      var errorContainer = document.querySelector('.error-message');
+
+      if (isNaN(startNumber) || isNaN(endNumber)) {
+        errorContainer.textContent = 'Please enter valid numbers.';
+        resultContainer.textContent = '';
+        return;
+      }
+
+      var sum = 0;
+      var numbersAdded = [];
+
+      for (var i = startNumber; i <= endNumber; i++) {
+        sum += i;
+        numbersAdded.push(i);
+      }
+
+      errorContainer.textContent = '';
+      resultContainer.innerHTML = 'The sum is: ' + sum + '<br>' + 'Numbers added: ' + numbersAdded.join(', ');
+
+      startNumberInput.value = '';
+      endNumberInput.value = '';
+    });
+  </script>
+</body>
+</html>
